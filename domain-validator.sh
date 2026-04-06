@@ -4,4 +4,4 @@
 #done | grep -v "000" | cut -d " " -f 1 >> subdomains.txt
 
 
-for domain in $(cat target-full.txt);do host $domain | grep -v NXDOMAIN | head -n 1 | cut -d " " -f 1 ; done >> target-tmp.txt | mv target-tmp.txt target.txt
+for domain in $(cat target-full.txt);do host $domain | grep -Ev "NXDOMAIN|Host|;|host" | head -n 1 | cut -d " " -f 1 ; done >> target-tmp.txt | mv target-tmp.txt target.txt
